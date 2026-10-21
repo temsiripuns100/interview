@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบประเมินและคำถามสัมภาษณ์งาน (นพลักษณ์ 9) - Goods Japan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c94a29;
+      --primary-dark: #a13214;
+      --primary-light: #fef0eb;
+      --indigo: #1e293b;
+      --indigo-accent: #2c3e55;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px 12px 60px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: #fff;
+      padding: 30px 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.15);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    header::after {
+      content: "グッズ・ジャパン";
+      font-family: 'Noto Sans JP', sans-serif;
+      position: absolute;
+      right: -20px;
+      bottom: -15px;
+      font-size: 4rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+    }
+
+    .badge-header {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subtitle {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* Card styling */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--indigo);
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 8px;
+    }
+
+    /* Candidate Info Inputs */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input[type="text"]:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(201, 74, 41, 0.15);
+    }
+
+    /* Checklist Section */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      margin-bottom: 8px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .checklist-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .checklist-label {
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .checklist-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Question Box */
+    .q-box {
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .q-tag {
+      font-size: 0.75rem;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--indigo);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-label:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .option-label input[type="radio"] {
+      margin-top: 4px;
+      accent-color: var(--primary);
+    }
+
+    .option-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--indigo);
+    }
+
+    .option-enneagram {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .type-1-6 { background: #dcfce7; color: #15803d; } /* Perfect for Store */
+    .type-2 { background: #e0e7ff; color: #4338ca; } /* Good service */
+    .type-3-8 { background: #fef3c7; color: #b45309; } /* Driver/firm */
+    .type-7-9 { background: #f1f5f9; color: #475569; } /* Relaxed/Distracted */
+
+    /* Result Panel */
+    .result-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .result-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .result-score {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--indigo);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .btn-group, .no-print {
+        display: none !important;
+      }
+      .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+      }
+      header {
+        background: #1e293b !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="badge-header">HR & Psychology Tool</div>
+    <h1>🌸 Goods Japan คลองสี่</h1>
+    <p class="subtitle">แบบฟอร์มสัมภาษณ์งานและประเมินจิตวิทยานพลักษณ์ 9 ลักษณ์ (Enneagram Assessment)</p>
+  </header>
+
+  <!-- Candidate Information Form -->
+  <div class="card">
+    <div class="card-title">📋 ข้อมูลผู้สมัครงาน</div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label>ชื่อ-นามสกุล / ชื่อเล่น:</label>
+        <input type="text" id="candName" placeholder="เช่น น.ส. อัจฉรา ผมพันธ์ (ปุ๊ก / อาย)">
+      </div>
+      <div class="form-group">
+        <label>อายุ (ปี):</label>
+        <input type="text" id="candAge" placeholder="เช่น 28 หรือ 33 ปี">
+      </div>
+      <div class="form-group">
+        <label>ที่พักอาศัย / การเดินทาง:</label>
+        <input type="text" id="candAddress" placeholder="เช่น มบ.สิริทาวน์ คลอง 4 (มอเตอร์ไซค์ 5 นาที)">
+      </div>
+      <div class="form-group">
+        <label>เบอร์โทรศัพท์ติดต่อ:</label>
+        <input type="text" id="candPhone" placeholder="09X-XXXXXXX">
+      </div>
+      <div class="form-group">
+        <label>วันที่สัมภาษณ์:</label>
+        <input type="text" id="interviewDate" value="21 ตุลาคม 2569">
+      </div>
+      <div class="form-group">
+        <label>สถานที่สัมภาษณ์:</label>
+        <input type="text" id="interviewLoc" value="Café Amazon ปั๊ม ปตท. คลอง 4">
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 1: Basic Checklist -->
+  <div class="card">
+    <div class="card-title">✅ ด่านที่ 1: ตรวจสอบคุณสมบัติพื้นฐานและกฎเหล็ก (Basic Criteria)</div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">ติ๊กช่องที่ผู้สมัครยอมรับและผ่านเกณฑ์:</p>
+    
+    <div class="checklist-item">
+      <input type="checkbox" id="c1" checked>
+      <label class="checklist-label" for="c1">
+        <strong>เวลาทำงาน 09:00 – 18:00 น. (พัก 1 ชั่วโมง):</strong>
+        <div class="checklist-desc">สะดวกทำงานกะกลางวันคนเดียวหน้าร้าน และหยุดสัปดาห์ละ 1 วันเฉพาะวันธรรมดา (ห้ามหยุดเสาร์-อาทิตย์)</div>
+      </label>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c2" checked>
+      <label class="checklist-label" for="c2">
+        <strong>อัตราค่าจ้าง วันละ 350 บาท + โบนัสยอดขาย:</strong>
+        <div class="checklist-desc">ยอมรับค่าจ้างรายวัน 350 บาท และยินดีรับโบนัสพิเศษตามเป้ายอดขายหน้าร้าน</div>
+      </label>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c3" checked>
+      <label class="checklist-label" for="c3">
+        <strong>พร้อมเริ่มงาน 1 พฤศจิกายน 2569:</strong>
+        <div class="checklist-desc">พร้อมเริ่มงานวันแรกเพื่อช่วยจัดร้าน ล้างทำความสะอาด และคัดแยกสินค้า</div>
+      </label>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c4" checked>
+      <label class="checklist-label" for="c4">
+        <strong>กฎเหล็กความปลอดภัย (ไม่นำบุคคลภายนอก/แฟนมาเฝ้าร้าน):</strong>
+        <div class="checklist-desc">ไม่มีปัญหาเรื่องบุตรหลานหรือบุคคลภายนอกมามั่วสุมในร้านเวลางาน</div>
+      </label>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c5" checked>
+      <label class="checklist-label" for="c5">
+        <strong>ความซื่อสัตย์ 100% ไม่ยักยอกเงินหรือสินค้า:</strong>
+        <div class="checklist-desc">ยอมรับเงื่อนไขการเลิกจ้างทันทีโดยไม่จ่ายชดเชยหากทุจริต หรือแอบเก็บเงินเข้ากระเป๋า</div>
+      </label>
+    </div>
+  </div>
+
+  <!-- Phase 2: Enneagram Questions -->
+  <div class="card">
+    <div class="card-title">🧠 ด่านที่ 2: คำถามจิตวิทยาคัดกรอง 9 ลักษณ์ (Enneagram Situational Questions)</div>
+    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">
+      ชวนคุยอย่างเป็นกันเอง สังเกตปฏิกิริยาและเลือกคำตอบที่ใกล้เคียงกับคำพูดของผู้สมัครมากที่สุด:
+    </p>
+
+    <!-- Q1 -->
+    <div class="q-box">
+      <div class="q-header">
+        <span class="q-tag">คำถามที่ 1: วัดแรงขับเคลื่อน (Core Motivation)</span>
+      </div>
+      <div class="q-text">🗣️ "ในงานที่เคยทำมาทั้งวัน ตอนเลิกงานกลับบ้าน สิ่งที่ทำให้รู้สึกแฮปปี้และภูมิใจที่สุดคืออะไรครับ?"</div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q1" value="type1" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ชอบเวลาเห็นร้านสะอาด ของเรียงเป๊ะ ตรวจแล้วไม่มีอะไรผิดพลาดเลยค่ะ"</div>
+            <span class="option-enneagram type-1-6">🎯 ลักษณ์ 1 (นักสมบูรณ์แบบ) — เนี๊ยบ จัดของเก่ง [เหมาะสมมาก ⭐⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q1" value="type2" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ชอบเวลาลูกค้าได้ของถูกใจแล้วยิ้มขอบคุณ พูดคุยดูแลแล้วเขามีความสุขค่ะ"</div>
+            <span class="option-enneagram type-2">💖 ลักษณ์ 2 (ผู้ดูแล/ผู้ให้) — มนุษยสัมพันธ์ดีเยี่ยม ลูกค้าติด [เหมาะสมมาก ⭐⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q1" value="type3" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ชอบตอนสรุปยอดขายแล้วเห็นว่าวันนี้ยอดทะลุเป้า ขายของชิ้นใหญ่ได้ค่ะ"</div>
+            <span class="option-enneagram type-3-8">🏆 ลักษณ์ 3 (ผู้ใฝ่สำเร็จ) — ปิดการขายเก่ง บ้าพลัง [เหมาะสม ⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q1" value="type6" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ชอบที่วันนี้ทุกอย่างราบรื่น ปลอดภัย ไม่มีเรื่องผิดพลาด เงินตรง สต็อกครบค่ะ"</div>
+            <span class="option-enneagram type-1-6">🛡️ ลักษณ์ 6 (ผู้รอบคอบ/จงรักภักดี) — รอบคอบ ซื่อสัตย์ ไม่คิดโกง [เหมาะสมมาก ⭐⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-box">
+      <div class="q-header">
+        <span class="q-tag">คำถามที่ 2: วัดการรับมือความกดดันและการปะทะ (Conflict Response)</span>
+      </div>
+      <div class="q-text">🗣️ "ร้านเราขายของมือสอง บางทีลูกค้าเดินเข้ามาต่อราคาแรงมาก หรืออารมณ์เสียใส่ แล้วเราอยู่คนเดียว ปกติรับมือยังไงครับ?"</div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q2" value="type2_9" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ยิ้มสู้ พูดจาหวานๆ เอาใจ หรือแนะนำโปรโมชั่น 3 ชิ้น 100 ให้เขาอารมณ์เย็นลงค่ะ"</div>
+            <span class="option-enneagram type-2">🕊️ ลักษณ์ 2 / 9 (ผู้ประนีประนอม) — ใจเย็น ไม่ปะทะ มีวุฒิภาวะสูง [เหมาะสม ⭐⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q2" value="type1_6" onclick="calcResult()">
+          <div>
+            <div class="option-title">"จะอธิบายราคามาตรฐานและสภาพสินค้าให้เขาฟังอย่างสุภาพและหนักแน่นตามเกณฑ์ร้านค่ะ"</div>
+            <span class="option-enneagram type-1-6">⚖️ ลักษณ์ 1 / 6 (ผู้ยึดหลักเกณฑ์) — หนักแน่น ไม่ปล่อยให้ร้านเสียเปรียบ [เหมาะสม ⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q2" value="type8" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ถ้าพูดไม่รู้เรื่องก็ต้องบอกตรงๆ ชัดเจนค่ะว่าไม่ได้ ไม่ยอมให้ใครมาเอาเปรียบร้าน"</div>
+            <span class="option-enneagram type-3-8">⚡ ลักษณ์ 8 (ผู้กล้าชน) — เด็ดขาด แต่อาจต้องระวังเรื่องน้ำเสียงกับลูกค้า [ปานกลาง ⭐⭐⭐]</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-box">
+      <div class="q-header">
+        <span class="q-tag">คำถามที่ 3: วัดความอดทนต่องานรูทีนคนเดียว 9 ชม. (Boredom & Solo Shift)</span>
+      </div>
+      <div class="q-text">🗣️ "ร้านเปิด 9 โมงถึง 6 โมงเย็น บางช่วงกลางวันลูกค้าจะเงียบ มีเราคนเดียว ถ้าช่วงไหนไม่มีลูกค้าเลย ปกติจะทำอะไรครับ?"</div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q3" value="workaholic" onclick="calcResult()">
+          <div>
+            <div class="option-title">"อยู่เฉยไม่ค่อยเป็นค่ะ คงหยิบผ้ามาปัดฝุ่น เช็ดจานชาม ขัดหม้อ หรือจัดเรียงชั้นใหม่ให้สวยค่ะ"</div>
+            <span class="option-enneagram type-1-6">✨ ขยันโดยไม่ต้องสั่ง (ลักษณ์ 1 / 6) — มีความรับผิดชอบสูงมาก [เกรด A+ ⭐⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q3" value="curious" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ชอบหยิบของสวยๆ มาดู พลิกดูตราประทับ ศึกษาข้อมูล หรือถ่ายรูปสินค้าสวยๆ รอค่ะ"</div>
+            <span class="option-enneagram type-2">🔍 หลงใหลในสินค้า (ลักษณ์ 4 / 5) — มีรสนิยม ป้ายยาเก่ง [เกรด A ⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q3" value="passive" onclick="calcResult()">
+          <div>
+            <div class="option-title">"นั่งฟังเพลง ดูคลิป เล่นมือถือรอค่ะ ถ้าลูกค้ามาค่อยลุกขึ้นไปบริการ"</div>
+            <span class="option-enneagram type-7-9">⚠️ ติดสบาย (ลักษณ์ 7 / 9) — ต้องคอยกำกับเรื่องกฎห้ามติดมือถือ [ระวัง ⭐⭐]</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-box">
+      <div class="q-header">
+        <span class="q-tag">คำถามที่ 4: วัดความซื่อสัตย์และความถูกต้องเรื่องเงิน (Ethics & Cash Detail)</span>
+      </div>
+      <div class="q-text">🗣️ "ถ้าตอนปิดกะ 6 โมงเย็น นับเงินในลิ้นชักแล้วพบว่า 'เงินเกินมา 100 บาท' หรือ 'เงินขาดไป 50 บาท' ปกติจัดการยังไงครับ?"</div>
+      <div class="options-grid">
+        <label class="option-label">
+          <input type="radio" name="q4" value="honest_strict" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ต้องรีบเช็คบิลย้อนหลังทันที หาสาเหตุว่าหลุดตรงไหน และจดลงสมุดรายงานผู้จัดการตรงๆ ค่ะ"</div>
+            <span class="option-enneagram type-1-6">💎 ความซื่อสัตย์ระดับสูงสุด (ลักษณ์ 1 / 6) — ซื่อตรง โปร่งใส ไร้กังวล [เพชรเม็ดงาม 🏆]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q4" value="honest_soft" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ถ้าเงินขาดหนูออกชดเชยให้เองค่ะ ไม่อยากให้เป็นปัญหา ส่วนเงินเกินก็แยกไว้รอเช็คค่ะ"</div>
+            <span class="option-enneagram type-2">🤲 ขี้เกรงใจ รับผิดชอบสูง (ลักษณ์ 2 / 9) — จิตใจดี ไม่คิดโกง [ดีมาก ⭐⭐⭐⭐]</span>
+          </div>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="q4" value="careless" onclick="calcResult()">
+          <div>
+            <div class="option-title">"ก็วางไว้ในลิ้นชักก่อนค่ะ ค่อยดูวันถัดไป หรือถ้าขาดเล็กน้อยก็ถือว่าถัวๆ กันไป"</div>
+            <span class="option-enneagram type-7-9">❌ หย่อนยานเรื่องระบบเงินสด — ไม่ผ่านเกณฑ์ [ปัดตก 🚫]</span>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Practical & First Impression -->
+  <div class="card">
+    <div class="card-title">🎭 ด่านที่ 3: สังเกตบุคลิกภาพจริง & ทดสอบหน้างาน 3 นาที (The Practical Test)</div>
+    
+    <div class="grid-2">
+      <div class="form-group">
+        <label>รอยยิ้มและการทักทายแรกพบ (First Impression):</label>
+        <select id="firstImp">
+          <option value="5">⭐⭐⭐⭐⭐ ยิ้มแย้มแจ่มใส ไหว้สวย พูดจาสุภาพมาก</option>
+          <option value="4">⭐⭐⭐⭐ ยิ้มแย้ม ทักทายสุภาพ เรียบร้อย</option>
+          <option value="3">⭐⭐⭐ ทักทายตามมารยาท ไม่ค่อยยิ้ม</option>
+          <option value="2">⭐⭐ หน้าบึ้งตึง พูดจาห้วนเกินไป</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>การทดสอบหยิบสินค้า 3 ชิ้นให้ลองแนะนำขาย:</label>
+        <select id="practicalScore">
+          <option value="5">⭐⭐⭐⭐⭐ พูดจาน่าฟัง ชี้จุดเด่นของญี่ปุ่นได้เป็นธรรมชาติ</option>
+          <option value="4">⭐⭐⭐⭐ อธิบายได้ดี มีความมั่นใจพอสมควร</option>
+          <option value="3">⭐⭐⭐ พูดไม่ค่อยออก เคอะเขิน แต่พร้อมเรียนรู้</option>
+          <option value="2">⭐⭐ ไม่สนใจแนะนำ ไม่กล้าพูด</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
+      <label>บันทึกข้อสังเกตเพิ่มเติมของผู้สัมภาษณ์:</label>
+      <textarea id="interviewerNotes" rows="3" placeholder="เช่น พูดจาดีมาก มีประสบการณ์จาก MR.DIY และตลาดจัมโบ้ คล่องงานแคชเชียร์..."></textarea>
+    </div>
+  </div>
+
+  <!-- Result Summary Box -->
+  <div class="card result-box">
+    <div class="result-title">🎯 สรุปผลการประเมินผู้สมัคร</div>
+    <div class="result-score" id="resultGrade">กรุณาเลือกคำตอบให้ครบ</div>
+    <p id="resultDesc" style="color: var(--text-muted); font-size: 0.95rem;">
+      ระบบจะคำนวณลักษณ์เด่น และให้คะแนนความเหมาะสมกับร้าน Goods Japan อัตโนมัติ
+    </p>
+  </div>
+
+  <!-- Actions -->
+  <div class="btn-group no-print">
+    <button class="btn btn-primary" onclick="window.print()">🖨️ พิมพ์ / บันทึกเป็น PDF</button>
+    <button class="btn btn-secondary" onclick="copySummary()">📋 คัดลอกสรุปผลการสัมภาษณ์</button>
+  </div>
+
+</div>
+
+<script>
+  function calcResult() {
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+    const q3 = document.querySelector('input[name="q3"]:checked');
+    const q4 = document.querySelector('input[name="q4"]:checked');
+
+    if (!q1 || !q2 || !q3 || !q4) return;
+
+    let score = 0;
+    let enneagramTypes = [];
+
+    // Scoring logic
+    if (q1.value === 'type1' || q1.value === 'type6') { score += 25; enneagramTypes.push("ลักษณ์ 1/6 (รอบคอบ วินัยสูง)"); }
+    else if (q1.value === 'type2') { score += 25; enneagramTypes.push("ลักษณ์ 2 (บริการอบอุ่น)"); }
+    else if (q1.value === 'type3') { score += 20; enneagramTypes.push("ลักษณ์ 3 (มุ่งเป้าหมาย)"); }
+
+    if (q2.value === 'type2_9') { score += 25; enneagramTypes.push("ลักษณ์ 2/9 (ประนีประนอม)"); }
+    else if (q2.value === 'type1_6') { score += 25; enneagramTypes.push("ลักษณ์ 1/6 (ยึดหลักเกณฑ์)"); }
+    else if (q2.value === 'type8') { score += 15; enneagramTypes.push("ลักษณ์ 8 (กล้าชน)"); }
+
+    if (q3.value === 'workaholic') { score += 25; }
+    else if (q3.value === 'curious') { score += 20; }
+    else if (q3.value === 'passive') { score += 10; }
+
+    if (q4.value === 'honest_strict') { score += 25; }
+    else if (q4.value === 'honest_soft') { score += 20; }
+    else if (q4.value === 'careless') { score += 0; }
+
+    const gradeElem = document.getElementById('resultGrade');
+    const descElem = document.getElementById('resultDesc');
+
+    if (score >= 90) {
+      gradeElem.innerHTML = `🏆 ผ่านเกณฑ์ระดับ A+ (คะแนน ${score}/100)`;
+      gradeElem.style.color = "#10b981";
+      descElem.innerHTML = `<strong>วิเคราะห์ลักษณ์เด่น:</strong> ${enneagramTypes.join(' + ')}<br>🌟 <strong>ข้อแนะนำ:</strong> เป็นคนที่ใช่ที่สุดสำหรับร้าน! มีความซื่อสัตย์ ละเอียด รอบคอบ ไม่ติดมือถือ และมีใจรักงานบริการ พร้อมเซ็นสัญญาเริ่มงาน 1 พ.ย. ทันที!`;
+    } else if (score >= 75) {
+      gradeElem.innerHTML = `🥈 ผ่านเกณฑ์ระดับ B+ ตัวสำรองชั้นดี (คะแนน ${score}/100)`;
+      gradeElem.style.color = "#f59e0b";
+      descElem.innerHTML = `<strong>วิเคราะห์ลักษณ์เด่น:</strong> ${enneagramTypes.join(' + ')}<br>👍 <strong>ข้อแนะนำ:</strong> ผ่านเกณฑ์ สามารถทำงานได้ แต่อาจต้องกวดขันเรื่องระบบเงินทอนหรือการจัดเวลาทำงานเดี่ยว`;
+    } else {
+      gradeElem.innerHTML = `⚠️ ไม่ผ่านเกณฑ์ (คะแนน ${score}/100)`;
+      gradeElem.style.color = "#ef4444";
+      descElem.innerHTML = `❌ <strong>ข้อแนะนำ:</strong> มีความเสี่ยงเรื่องความกระตือรือร้น หรือระบบความซื่อสัตย์เรื่องเงินสด แนะนำให้พิจารณาผู้สมัครรายอื่น`;
+    }
+  }
+
+  function copySummary() {
+    const name = document.getElementById('candName').value || "ไม่ระบุชื่อ";
+    const age = document.getElementById('candAge').value || "-";
+    const grade = document.getElementById('resultGrade').innerText;
+    const desc = document.getElementById('resultDesc').innerText;
+    const notes = document.getElementById('interviewerNotes').value || "-";
+
+    const summaryText = `🌸 ผลการสัมภาษณ์งาน Goods Japan 🌸\nผู้สมัคร: ${name} (อายุ ${age})\nผลการประเมิน: ${grade}\nรายละเอียด: ${desc}\nบันทึกผู้สัมภาษณ์: ${notes}`;
+
+    navigator.clipboard.writeText(summaryText).then(() => {
+      alert("คัดลอกสรุปผลการสัมภาษณ์เรียบร้อยแล้ว! สามารถนำไปแปะในแชทหรือบันทึกได้ทันที");
+    });
+  }
+</script>
+
+</body>
+</html>
